@@ -17,9 +17,11 @@ C4Container
     System_Ext(gemini, "Google Gemini API", "External LLM service")
 
     Rel(user, api, "POST /ask", "HTTPS")
-    Rel(api, orchestrator, "Passes user question")
+    Rel(user, api, "POST/summarize)
+    Rel(api, orchestrator, "Passes user input")
     Rel(orchestrator, provider, "Sends formatted prompt")
     Rel(provider, gemini, "generate_content()", "HTTPS")
+
 ```
 
 ## Container-to-Code Mapping
@@ -36,3 +38,4 @@ C4Container
 |---|---|---|
 | GET | `/health` | Health check |
 | POST | `/ask` | Submit a question, receive an AI-generated answer |
+| POST | `/summarize` | Submit text, receive a concise summary |
